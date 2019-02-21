@@ -1,3 +1,4 @@
 .idea
 udacity/*.tar.gz
 udacity/notMNIST_*/*
+udacity/notMNIST.pickle
