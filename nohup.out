@@ -1,0 +1,31 @@
+[I 16:41:51.967 LabApp] Writing notebook server cookie secret to /run/user/1002/jupyter/notebook_cookie_secret
+[I 16:41:52.087 LabApp] JupyterLab extension loaded from /home/Luca/.conda/envs/tensorflow/lib/python3.6/site-packages/jupyterlab
+[I 16:41:52.087 LabApp] JupyterLab application directory is /home/Luca/.conda/envs/tensorflow/share/jupyter/lab
+[W 16:41:52.088 LabApp] JupyterLab server extension not enabled, manually loading...
+[I 16:41:52.089 LabApp] JupyterLab extension loaded from /home/Luca/.conda/envs/tensorflow/lib/python3.6/site-packages/jupyterlab
+[I 16:41:52.089 LabApp] JupyterLab application directory is /home/Luca/.conda/envs/tensorflow/share/jupyter/lab
+[I 16:41:52.089 LabApp] Serving notebooks from local directory: /data/workspace/Luca/education/deep-learning-tutorials
+[I 16:41:52.090 LabApp] The Jupyter Notebook is running at:
+[I 16:41:52.090 LabApp] http://localhost:8888/?token=f79f48b7469d3f238d2c7924f41337c8338039e8f4885bbb
+[I 16:41:52.090 LabApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 16:41:52.092 LabApp] No web browser found: could not locate runnable browser.
+[C 16:41:52.092 LabApp] 
+    
+    To access the notebook, open this file in a browser:
+        file:///run/user/1002/jupyter/nbserver-8158-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/?token=f79f48b7469d3f238d2c7924f41337c8338039e8f4885bbb
+[I 16:43:34.671 LabApp] 302 GET / (127.0.0.1) 1.63ms
+[I 16:45:34.900 LabApp] 302 GET / (127.0.0.1) 1.29ms
+[I 16:45:39.196 LabApp] 302 GET / (127.0.0.1) 0.39ms
+[I 16:49:26.679 LabApp] 302 GET / (127.0.0.1) 1.35ms
+[W 16:50:01.453 LabApp] Blocking request with non-local 'Host' falcon.nims.go.jp (falcon.nims.go.jp). If the notebook should be accessible at that name, set NotebookApp.allow_remote_access to disable the check.
+[W 16:50:01.456 LabApp] 403 GET /lab? (127.0.0.1) 4.48ms referer=None
+[I 16:50:05.034 LabApp] 302 GET / (127.0.0.1) 1.35ms
+[I 16:57:03.778 LabApp] 302 GET /jupyter/ (::1) 1.31ms
+[I 16:57:07.407 LabApp] 302 GET /jupyter/ (::1) 1.26ms
+[I 16:57:35.615 LabApp] 302 GET /jupyter/ (::1) 1.28ms
+[I 17:02:19.614 LabApp] 302 GET /jupyter/ (::1) 1.29ms
+[W 17:02:24.694 LabApp] 404 GET /jupyter/lab (::1) 20.60ms referer=None
+[C 17:04:26.500 LabApp] received signal 15, stopping
+[I 17:04:26.503 LabApp] Shutting down 0 kernels
