@@ -97,17 +97,21 @@ model.save_weights('pre_trained_flove_model.h5')
 
 import matplotlib.pyplot as plt
 
-
 acc = history.history['acc']
 val_acc = history.history['val_acc']
+print (val_acc)
 loss = history.history['loss']
 val_loss = history.history['val_loss']
+print(val_loss)
+
 epochs = range(1, len(acc) + 1)
 plt.plot(epochs, acc, 'bo', label='Training acc')
 plt.plot(epochs, val_acc, 'b', label='Validation acc')
 plt.title('Training and validation accuracy')
 plt.legend()
 plt.figure()
+plt.interactive(False)
+plt.show()
 
 plt.plot(epochs, loss, 'bo', label='Training loss')
 plt.plot(epochs, val_loss, 'b', label='Validation loss')
