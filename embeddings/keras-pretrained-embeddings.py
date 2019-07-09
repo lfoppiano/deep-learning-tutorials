@@ -6,24 +6,29 @@ from keras_preprocessing.sequence import pad_sequences
 from keras_preprocessing.text import Tokenizer
 
 # data loading
-imdb_dir = '/Users/lfoppiano/development/education/deep-learning-tutorials/embeddings/aclImdb'
+imdb_dir = 'aclImdb'
 
 train_dir = os.path.join(imdb_dir, 'train')
 
-labels = []
-texts = []
+def load_data(train_dir):
+    labels = []
+    texts = []
+    for label_type in ['neg', 'pos']:
+        dir_name = os.path.join(train_dir, label_type)
+        for fname in os.listdir(dir_name):
+            if fname.endswith('.txt'):
+                with open(os.path.join(dir_name, fname)) as f:
+                    texts.append(f.read())
 
-for label_type in ['neg', 'pos']:
-    dir_name = os.path.join(train_dir, label_type)
-    for fname in os.listdir(dir_name):
-        if fname.endswith('.txt'):
-            with open(os.path.join(dir_name, fname)) as f:
-                texts.append(f.read())
+                if label_type == 'neg':
+                    labels.append(0)
+                else:
+                    labels.append(1)
 
-            if label_type == 'neg':
-                labels.append(0)
-            else:
-                labels.append(1)
+    return texts, labels
+
+
+texts, labels = load_data(train_dir)
 
 # tokenisation
 
@@ -38,15 +43,16 @@ sequences = tokenizer.texts_to_sequences(texts)
 
 word_index = tokenizer.word_index
 
-print(len(word_index))
+print('Found %s unique tokens.' % len(word_index))
 
 data = pad_sequences(sequences, maxlen=maxlen)
 labels = np.asarray(labels)
 
-print(data.shape)
-print(labels.shape)
+print('Shape of data tensor:', data.shape)
+print('Shape of label tensor:', labels.shape)
 
 indices = np.arange(data.shape[0])
+np.random.shuffle(indices)
 
 data = data[indices]
 labels = labels[indices]
@@ -93,16 +99,17 @@ model.layers[0].trainable = False
 model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['acc'])
 history = model.fit(x_train, y_train, epochs=10, batch_size=32, validation_data=(x_val, y_val))
 
-model.save_weights('pre_trained_flove_model.h5')
+model_name = 'pre_trained_flove_model.h5'
+model.save_weights(model_name)
+
+# Visualisation
 
 import matplotlib.pyplot as plt
 
 acc = history.history['acc']
 val_acc = history.history['val_acc']
-print (val_acc)
 loss = history.history['loss']
 val_loss = history.history['val_loss']
-print(val_loss)
 
 epochs = range(1, len(acc) + 1)
 plt.plot(epochs, acc, 'bo', label='Training acc')
@@ -121,3 +128,19 @@ plt.figure()
 
 plt.interactive(False)
 plt.show()
+
+# Test the model on the test data
+
+test_dir = os.path.join(imdb_dir, 'test')
+
+texts_test, labels_test = load_data(train_dir)
+
+sequences = tokenizer.texts_to_sequences(texts_test)
+x_test = pad_sequences(sequences, maxlen = maxlen)
+y_test = np.asarray(labels_test)
+
+model.load_weights(model_name)
+evaluation = model.evaluate(x_test, y_test)
+
+print("Accuracy %s", evaluation[1])
+print("Loss %s", evaluation[0])
